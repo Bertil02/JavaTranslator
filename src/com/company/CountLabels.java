@@ -2,14 +2,14 @@ package com.company;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class LabelCounterUtil {
+public class CountLabels {
 
     private static final AtomicInteger ifLabelCounter = new AtomicInteger(0);
     private static final AtomicInteger whileLabelCounter = new AtomicInteger(0);
     private static final AtomicInteger condLabelCounter = new AtomicInteger(0);
     private static final AtomicInteger tmpLabelCounter = new AtomicInteger(0);
 
-    private LabelCounterUtil() {
+    private CountLabels() {
     }
 
     public static Integer getIncrementIfLabelCounter() {

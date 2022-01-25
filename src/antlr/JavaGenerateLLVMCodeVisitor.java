@@ -1,15 +1,15 @@
 package antlr;
 
-import com.company.LabelCounterUtil;
+import com.company.CountLabels;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class JavaCodeGeneratingVisitor extends JavaBaseVisitor<String> {
+public class JavaGenerateLLVMCodeVisitor extends JavaBaseVisitor<String> {
     private final Map<String, String> usedIdentifiers = new HashMap<>();
     private final StringBuilder stringBuilder;
 
-    public JavaCodeGeneratingVisitor(StringBuilder stringBuilder) {
+    public JavaGenerateLLVMCodeVisitor(StringBuilder stringBuilder) {
         this.stringBuilder = stringBuilder;
     }
 
@@ -52,8 +52,8 @@ public class JavaCodeGeneratingVisitor extends JavaBaseVisitor<String> {
     }
 
     private String formatIncrementAssignment(String identifier, String type, String value) {
-        var tmpValue = String.format("tmp%d", LabelCounterUtil.getIncrementTmpLabelCounter());
-        var tmpAdd = String.format("tmp%d", LabelCounterUtil.getIncrementTmpLabelCounter());
+        var tmpValue = String.format("tmp%d", CountLabels.getIncrementTmpLabelCounter());
+        var tmpAdd = String.format("tmp%d", CountLabels.getIncrementTmpLabelCounter());
 
         return String.format("%%%s = load %s, %s* %%%s\n", tmpValue, type, type, identifier) +
                 String.format("%%%s = add nsw %s %%%s,%s\n", tmpAdd, type, tmpValue, value) +
